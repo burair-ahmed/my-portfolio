@@ -5,12 +5,16 @@ export const metadata = {
 };
 
 import ThreeScene from './components/ThreeScene';
+import Robot from './components/Robot'
+import Hero from './components/Hero/Hero'
 
 export default function Home() {
   return (
     <div>
-      <h1>Three.js Scene</h1>
-      <ThreeScene />
+      {/* <h1>Three.js Scene</h1> */}
+      {/* <ThreeScene /> */}
+      {/* <Robot /> */}
+    <Hero/>
     </div>
   );
 }

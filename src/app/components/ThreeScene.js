@@ -1,5 +1,5 @@
 // src/app/components/ThreeScene.js
-"use client"; // This marks the file as a Client Component
+"use client"; // Mark as Client Component
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
@@ -12,7 +12,10 @@ const ThreeScene = () => {
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    mountRef.current.appendChild(renderer.domElement);
+    
+    if (mountRef.current) {
+      mountRef.current.appendChild(renderer.domElement);
+    }
 
     const geometry = new THREE.BoxGeometry();
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
@@ -36,8 +39,11 @@ const ThreeScene = () => {
     };
     window.addEventListener('resize', handleResize);
 
+    // Cleanup function
     return () => {
-      mountRef.current.removeChild(renderer.domElement);
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
       window.removeEventListener('resize', handleResize);
     };
   }, []);
